@@ -1,0 +1,49 @@
+gcc -o pimapp pimapp.c
+
+[[[ Usage Error - file not passed ]]]
+./pimapp
+Error, please pass the database filename as the argument.
+Usage ./pimapp <dbfile>
+rc=1
+
+
+[[[ Unable to write a file ]]]
+./pimapp /nosuch/dbfile <<ECMDS
+I,123456789,S,John Doe,Science,2022
+END
+ECMDS
+
+Error, unable to open /nosuch/dbfile for writing.
+rc=3
+
+
+[[[ Inserts ]]]
+./pimapp dbfile1 <<ECMDS
+I,123456789,S,John Doe,Science,2022
+I,123456899,P,Jane Doe,Arts,2010,Y
+LIST
+END
+ECMDS
+
+123456789,S,John Doe,Science,2022
+123456899,P,Jane Doe,Arts,2010,Y
+rc=0
+contents of dbfile ...
+123456789,S,John Doe,Science,2022
+123456899,P,Jane Doe,Arts,2010,Y
+
+
+[[[ Deletes ]]]
+./pimapp $PWD/dbfile2 <<ECMDS
+I,123456789,S,John Doe,Science,2022
+I,123456799,P,Jane Doe,Computer Science,2020,N
+D,123456799
+LIST
+END
+ECMDS
+
+123456789,S,John Doe,Science,2022
+rc=0
+contents of dbfile ...
+123456789,S,John Doe,Science,2022
+

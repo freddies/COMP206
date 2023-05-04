@@ -1,0 +1,27 @@
+
+If you understand the concept of absolute / relative paths, you can write common code that need not have separate logic for absolute path arguments vs relative path arguments - and they are quite straight forward and simple.
+
+
+Ex 1.
+
+use -ef to check if two arguments point to the same file (works across abs/relative paths, links, etc.)
+
+------------------------
+
+
+Ex 2.
+
+--
+
+To pick only the lines with valid numbers from the in put file, you can just use the grep concepts shown in class
+
+for num in $(grep '^[1-9][0-9]\{0,18\}$' < nums.txt | grep -v '^[0-1]$') # pick only the entries that are valid for our range.
+do
+....
+
+
+--
+
+For the largest prime, store the largest prime seen so far (initialize it to 0). Every time it reports a prime, check with the previously reported largest prime AND UPDATE it.
+
+Once outside the loop, print the largest prime if it is > 0.

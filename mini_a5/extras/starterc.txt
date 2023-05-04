@@ -1,0 +1,60 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+
+// Record / Node for the linked list.
+// You MUST use the exact structure. No modification allowed.
+typedef struct PersonalInfoRecord
+{ 
+	char id[10];
+	char ptype;
+	char name[31];
+
+	union
+	{
+		struct
+		{
+			char dept[31];
+			int hireyear;
+			char tenured;
+		}prof;
+		struct
+		{
+			char faculty[31];
+			int admyear;
+		}stud;
+	}info;
+
+	struct PersonalInfoRecord *next;
+} PersonalInfoRecord;
+//
+// Use this in your code as 
+// PersonalInfoRecord pir; PersonalInfoRecord *pirp; etc ...
+//
+
+// Whatever other functions you need.
+
+// The main of your application
+int main(int argc, char *argv[])
+{
+	char inputbuffer[100], *input; // to store each input line;
+
+	// declare other variables as needed, etc.
+	// do not forget to check input arguments...
+
+	while (fgets(input=inputbuffer, 100, stdin) != NULL) // Get each input line.
+	{
+		if(strncmp(input, "END", 3) == 0) break; // We are asked to terminate.
+
+		// This is just a toy example to show how to parse the input.
+		//	Replace it with proper logic!!
+		int field = 1; char*fielddata;
+		while( (fielddata = strsep(&input, ",\n")) != NULL)
+			printf("Field %d is %s\n", field++, fielddata);;
+		//Why is there always an extra field at the end? Is it actually a problem that you need to worry about?
+
+	}
+
+	return 0; // Appropriate return code from this program.
+	
+}

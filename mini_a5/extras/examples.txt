@@ -1,0 +1,34 @@
+$ ./pimapp./pimapp
+Error, please pass the database filename as the argument.
+Usage ./pimapp <dbfile>
+$ echo $?echo $?
+1
+$ ./pimapp /nosuch/dbfile./pimapp /nosuch/dbfile
+I,123456789,S,John Doe,Science,2022
+LIST
+123456789,S,John Doe,Science,2022
+END
+Error, unable to open /nosuch/dbfile for writing.
+$ echo $?echo $?
+3
+$ ./pimapp dbfile1./pimapp dbfile1
+I,123456789,S,John Doe,Science,2022
+LIST
+123456789,S,John Doe,Science,2022
+I,123456899,P,Jane Doe,Arts,2010,Y
+I,123456999,P,Ali,Engineering,2015,N
+LIST
+123456789,S,John Doe,Science,2022
+123456899,P,Jane Doe,Arts,2010,Y
+123456999,P,Ali,Engineering,2015,N
+D,123456999
+LIST
+123456789,S,John Doe,Science,2022
+123456899,P,Jane Doe,Arts,2010,Y
+END
+$ echo $?echo $?
+0
+$ cat dbfile1cat dbfile1
+123456789,S,John Doe,Science,2022
+123456899,P,Jane Doe,Arts,2010,Y
+$ 
